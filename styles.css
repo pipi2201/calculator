@@ -3,7 +3,9 @@
 .keypad, 
 .row, 
 .key {
-    border: 1px solid black;
+    border: 1px solid;
+    border-color: rgba(42, 23, 182, 0.8);
+    border-radius: 4px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -13,15 +15,29 @@
     height: 500px;
     width: 400px;
     flex-direction: column;
+    border: 3px solid;
+    border-radius: 4px;
+    border-color: rgba(42, 23, 182, 0.8);
+    margin: 20px;
 }
 
 .display {
     display: flex;
-    height: 100px;
+    height: 80px;
     align-items: center;
     font-size: xx-large;
     font-weight: 900;
+    background-color: rgba(42, 23, 182, 0.3);
+    border: 3px solid;
+    border-radius: 4px;
+    border-color: rgba(42, 23, 182, 0.6);
+    padding: 6px;
+    justify-content: end;
 }
+
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
+  }
 
 .keypad {
     display: flex;
@@ -42,7 +58,28 @@
     justify-content: center;
     font-size: x-large;
     font-weight: 900;
+    background-color: rgba(182, 23, 23, 0.5);
 }
 
+#zero {
+    flex-grow: 2;
+}
 
+#equalSign {
+    flex-grow: 2;
+}
+
+#addOperator, 
+#substractOperator,
+#multiplyOperator,
+#divideOperator {
+    background-color: rgba(2, 160, 89, 0.5);
+}
+
+#backspace,
+#clear,
+#comma,
+#equalSign {
+    background-color: rgba(42, 23, 182, 0.5);
+}
 

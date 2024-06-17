@@ -8,25 +8,25 @@
     <title>Calculator</title>
 </head>
 <body>
-    <div>
-        <h1>Calculator</h1>
-    </div>
     <div class="container">
-        <div class="display"></div>
+        <div class="display" contenteditable="true" data-text="0.00"></div>
         <div class="keypad">
             <div class="row">
+                <div class="key" id="clear">A/C</div>
                 <div class="key" id="nine">9</div>
                 <div class="key" id="eight">8</div>
                 <div class="key" id="seven">7</div>
                 <div class="key" id="divideOperator">/</div>
             </div>
             <div class="row">
+                <div class="key" id="backspace">DL</div>
                 <div class="key" id="six">6</div>
                 <div class="key" id="five">5</div>
                 <div class="key" id="four">4</div>
                 <div class="key" id="multiplyOperator">*</div>
             </div>
             <div class="row">
+                <div class="key" id="comma">.</div>
                 <div class="key" id="three">3</div>
                 <div class="key" id="two">2</div>
                 <div class="key" id="one">1</div>
@@ -34,7 +34,6 @@
             </div>
             <div class="row">
                 <div class="key" id="zero">0</div>
-                <div class="key" id="clear">CLEAR</div>
                 <div class="key" id="equalSign">=</div>
                 <div class="key" id="addOperator">+</div>
             </div>

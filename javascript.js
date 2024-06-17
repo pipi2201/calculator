@@ -18,8 +18,10 @@ let num1;
 let num2;
 let operator;
 let operatorCount = 0;
+let decimalCount = 0;
 let displayContent = [];
 const display = document.querySelector(".display");
+display.textContent = displayContent;
 
 function operate(num1, num2, operator) {
     if (operator === "+") {
@@ -40,6 +42,97 @@ const nine = document.querySelector("#nine");
 nine.addEventListener("click", () => {
     displayContent.push("9");
     display.textContent = displayContent.join("");
+});
+
+addEventListener("keydown", (event) => {
+    switch (event.key) {
+        case "9":
+            displayContent.push("9");
+            display.textContent = displayContent.join("");
+            break;
+        case "8":
+            displayContent.push("8");
+            display.textContent = displayContent.join("");
+            break;
+        case "7":
+            displayContent.push("7");
+            display.textContent = displayContent.join("");
+            break;
+        case "6":
+            displayContent.push("6");
+            display.textContent = displayContent.join("");
+            break;
+        case "5":
+            displayContent.push("5");
+            display.textContent = displayContent.join("");
+            break;
+        case "4":
+            displayContent.push("4");
+            display.textContent = displayContent.join("");
+            break;
+        case "3":
+            displayContent.push("3");
+            display.textContent = displayContent.join("");
+            break;
+        case "2":
+            displayContent.push("2");
+            display.textContent = displayContent.join("");
+            break;
+        case "1":
+            displayContent.push("1");
+            display.textContent = displayContent.join("");
+            break;
+        case "0":
+            displayContent.push("0");
+            display.textContent = displayContent.join("");
+            break;
+        case "Backspace":
+            displayContent.pop();
+            display.textContent = displayContent.join("");
+            break;
+        case ".":
+            handleComma();
+            break;
+        case "=":
+            getResult();
+            break;
+        case "+":
+            operatorCount++;
+            decimalCount = 0;
+            if (operatorCount > 1) {
+                getResult();
+            };
+            displayContent.push("+");
+            display.textContent = displayContent.join("");
+            break;
+        case "-":
+            operatorCount++;
+            decimalCount = 0;
+            if (operatorCount > 1) {
+                getResult();
+            };
+            displayContent.push("-");
+            display.textContent = displayContent.join("");
+            break;
+        case "/":
+            operatorCount++;
+            decimalCount = 0;
+            if (operatorCount > 1) {
+                getResult();
+            };
+            displayContent.push("/");
+            display.textContent = displayContent.join("");
+            break;
+        case "*":
+            operatorCount++;
+            decimalCount = 0;
+            if (operatorCount > 1) {
+                getResult();
+            };
+            displayContent.push("*");
+            display.textContent = displayContent.join("");
+            break;
+    }
 });
 
 const eight = document.querySelector("#eight");
@@ -97,9 +190,19 @@ zero.addEventListener("click", () => {
     display.textContent = displayContent.join("");
 });
 
+const backspace = document.querySelector("#backspace");
+backspace.addEventListener("click", () => {
+    displayContent.pop();
+    display.textContent = displayContent.join("");
+});
+
+const comma = document.querySelector("#comma");
+comma.addEventListener("click", handleComma);
+
 const divideOperator = document.querySelector("#divideOperator");
 divideOperator.addEventListener("click", () => {
     operatorCount++;
+    decimalCount = 0;
     if (operatorCount > 1) {
         getResult();
     };
@@ -111,6 +214,7 @@ divideOperator.addEventListener("click", () => {
 const multiplyOperator = document.querySelector("#multiplyOperator");
 multiplyOperator.addEventListener("click", () => {
     operatorCount++;
+    decimalCount = 0;
     if (operatorCount > 1) {
         getResult();
     };
@@ -121,6 +225,7 @@ multiplyOperator.addEventListener("click", () => {
 const substractOperator = document.querySelector("#substractOperator");
 substractOperator.addEventListener("click", () => {
     operatorCount++;
+    decimalCount = 0;
     if (operatorCount > 1) {
         getResult();
     };
@@ -131,6 +236,7 @@ substractOperator.addEventListener("click", () => {
 const addOperator = document.querySelector("#addOperator");
 addOperator.addEventListener("click", () => {
     operatorCount++;
+    decimalCount = 0;
     if (operatorCount > 1) {
         getResult();
     };
@@ -146,15 +252,24 @@ clear.addEventListener("click", () => {
     num2 = undefined;
     operator = undefined;
     operatorCount = 0;
+    decimalCount = 0;
 });
 
 const equalSign = document.querySelector("#equalSign");
 equalSign.addEventListener("click", getResult);
 
+function handleComma() {
+    decimalCount++;
+    if (decimalCount === 1) {
+        displayContent.push(".");
+        display.textContent = displayContent.join("");
+    }
+};
+
 function getIndexOfOperatorN(array, n) {
     let count = 0;
     for (let i = 0; i < displayContent.length; i++) {
-        if (isNaN(parseInt(displayContent[i]))) {
+        if (isNaN(parseInt(displayContent[i])) && (displayContent[i] != ".")) { 
             count++;
         }
         if (count === n) {
@@ -184,4 +299,5 @@ function getResult() {
     display.textContent = result;
     num1 = result;
     displayContent = [num1];
+    decimalCount = 0;
 }
